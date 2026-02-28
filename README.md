@@ -32,6 +32,11 @@ This repo deploys with `.github/workflows/deploy-pages.yml`.
 - This workflow is configured to trigger on **every push** plus manual dispatch.
 - Build output is uploaded from `./dist` and deployed via `actions/deploy-pages@v4`.
 
+### Environment protection rule compatibility
+- The `deploy` job now runs only on `main`, `master`, or `work`.
+- Pushes from feature branches (for example `codex/...`) still run `build`, but `deploy` is intentionally skipped to avoid `github-pages` environment rejection.
+- If you need deployment from another branch, update **Settings → Environments → github-pages → Deployment branches** to allow that branch pattern.
+
 
 ## File-structure parity with working repo
 To match the proven working setup:

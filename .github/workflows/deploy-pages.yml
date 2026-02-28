@@ -2,6 +2,8 @@ name: Deploy to GitHub Pages
 
 on:
   push:
+    branches:
+      - "**"
   workflow_dispatch:
 
 permissions:
@@ -42,6 +44,10 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    if: |
+      github.ref == 'refs/heads/main' ||
+      github.ref == 'refs/heads/master' ||
+      github.ref == 'refs/heads/work'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
