@@ -1,4 +1,4 @@
-const { useState } = React;
+import { useState } from "react";
 
 const C = {
   bg: "#faf6f1",
@@ -109,7 +109,7 @@ const DAY_TABS = [
   { id: 8, label: "3/7 Sat", short: "Partida" },
 ];
 
-function App() {
+export default function App() {
   const [tab, setTab] = useState("overview");
   const [dayIdx, setDayIdx] = useState(3);
 
@@ -648,10 +648,3 @@ function App() {
     </div>
   );
 }
-
-
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-);
