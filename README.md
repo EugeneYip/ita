@@ -1,29 +1,16 @@
 # It-lia
 
-## Deployment
+## GitHub Pages deployment
 
-This project deploys to GitHub Pages through:
-- `.github/workflows/deploy.yml`
+This repository deploys via GitHub Actions using `.github/workflows/deploy-pages.yml`.
 
-### Structure (mirrors successful project pattern)
-- Vite app entry: `index.html` + `src/main.jsx`
-- App UI: `src/App.jsx`
-- Build config: `vite.config.js`
-- Package manifest: `package.json`
-- Domain files: `CNAME`, `public/CNAME`, `docs/CNAME`
+### Important behavior
+- Switching **Pages Source** to **GitHub Actions** does **not** itself trigger a deploy run.
+- A deploy happens when:
+  1. You push a commit (now configured for all branches), or
+  2. You manually trigger **Deploy to GitHub Pages** from the Actions tab (`workflow_dispatch`).
 
-### Workflow behavior
-- Trigger: push on any branch + manual `workflow_dispatch`
-- Node: v20 with npm cache enabled
-- Install: `npm install --include=dev`
-- Build: `npm run build`
-- Deploy: `actions/deploy-pages@v4`
-
-### Custom domain
-This repository uses:
-- `italia.eugeneyip.org`
-
-
-### Install strategy
-- CI uses `npm install --include=dev` to avoid `npm ci` lockfile mismatch failures on merged branches.
-- If you want strict lockfile installs later, regenerate and commit a full `package-lock.json` and switch workflow back to `npm ci`.
+### Required repository settings
+1. **Settings → Pages → Source**: `GitHub Actions`
+2. **Settings → Actions → General**: Actions enabled for this repository
+3. Push a commit (or run workflow manually)
