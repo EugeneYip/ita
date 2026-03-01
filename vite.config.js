@@ -1,6 +1,7 @@
 import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
 
 export default defineConfig({
-  // Keep relative asset paths for GitHub Pages/custom domain compatibility.
+  plugins: [react()],
   base: "./",
 });
